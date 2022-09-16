@@ -12,6 +12,7 @@ let player = 1;
 let redScore = 0,
   yellowScore = 0;
 
+// array with all value=-1 if red check will  1 and 2 yellow will be the index of gird from 0 to 8
 let clicked = Array.from({ length: 9 }, () => -1);
 
 images.forEach((img, i) => {
@@ -23,6 +24,7 @@ images.forEach((img, i) => {
   );
 });
 
+// EventListener for to star game
 const game = (img, i) => {
   if (player == 1) {
     img.src = redImg;
@@ -41,6 +43,7 @@ const game = (img, i) => {
   img.removeEventListener("click", img.ref);
 };
 
+// reset when win or full
 const reset = () => {
   images.forEach((img, i) => {
     img.classList.add("opacity");
@@ -54,6 +57,7 @@ const reset = () => {
   });
 };
 
+// if wim add score reset game
 const win = () => {
   images.forEach((img) => {
     img.removeEventListener("click", img.ref);
@@ -72,6 +76,7 @@ const win = () => {
   }, 2000);
 };
 
+// check if win
 const checkWin = () => {
   for (let i = 0; i < 3; i++) {
     if (
@@ -108,8 +113,20 @@ const checkWin = () => {
   ) {
     win();
   }
+
+  //no win all full
+  let i = 0;
+  for (i = 0; i < clicked.length; i++) {
+    if (clicked[i] == -1) {
+      break;
+    }
+  }
+  if (i == clicked.length) {
+    setTimeout(reset, 1000);
+  }
 };
 
+// reset all with score
 resetBtn.addEventListener("click", () => {
   location.reload();
 });
