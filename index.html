@@ -5,6 +5,7 @@
   <title>Memory Game</title>
   <link rel="icon" href="assets/yellow.png">
   <link rel="stylesheet" href="styles/styles.css">
+
 </head>
 
 <body>
@@ -12,56 +13,58 @@
 </body>
 
 <div class="instruction">
-  <p>just click where you want it  </p>
-  <p>player: <span id="player">Red</span></p>
-</div>
-<!-- game container -->
-<div class="container">
+  <p>just click where you want it <button class="btn" id="reset">Reset</button></p>
+  <p>player: <span id="player">Red</span>///score:<span id="scoreRed">0</span>-<span id="scoreYellow">0</span</p> </div>
+        <!-- game container -->
+      <div class="container">
 
-  <!-- <p class="score">Score: <span id="score">0</span></p> -->
+        <!-- game board -->
+        <div class="board">
+          <div class="row">
+            <div class="col">
+              <img src="assets/yellow.png" class="opacity">
+            </div>
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+          </div>
 
-  <!-- game board -->
-  <div class="board">
-    <div class="row">
-      <div class="col">
-        <img src="assets/yellow.png" class="opacity">0
-      </div>
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">1
-      </div>
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">2
-      </div>
-    </div>
+          <div class="row">
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+          </div>
 
-    <div class="row">
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">3
+          <div class="row">
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+            <div class="col">
+              <img src="assets/yellow.png " class="opacity">
+            </div>
+          </div>
+          <!-- win -->
+          <div id="win" class="win d-none">
+            <span>WIN <span id="winer"></span></span>
+          </div>
+        </div>
       </div>
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">4
-      </div>
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">5
-      </div>
-    </div>
+      <!-- game board end -->
 
-    <div class="row">
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">6
-      </div>
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">7
-      </div>
-      <div class="col">
-        <img src="assets/yellow.png " class="opacity">8
-      </div>
-    </div>
 
-  </div>
-  <!-- game board end -->
-</div>
-<!-- game container end -->
-<script src="script/script.js"></script>
+      <!-- game container end -->
+      <script src="script/script.js"></script>
 
 </html>

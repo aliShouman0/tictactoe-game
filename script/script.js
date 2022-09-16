@@ -1,9 +1,16 @@
 const images = document.querySelectorAll(".col img");
 const playerTag = document.querySelector("#player");
-// const reset = document.querySelector("#reset");
+const winBox = document.querySelector("#win");
+const winName = document.querySelector("#winer");
+const scoreYellowTag = document.querySelector("#scoreYellow");
+const scoreRedTag = document.querySelector("#scoreRed");
+const resetBtn = document.querySelector("#reset");
+
 const redImg = "../assets/red.png";
 const yellowImg = "../assets/yellow.png";
 let player = 1;
+let redScore = 0,
+  yellowScore = 0;
 
 let clicked = Array.from({ length: 9 }, () => -1);
 
@@ -11,26 +18,58 @@ images.forEach((img, i) => {
   img.addEventListener(
     "click",
     (img.ref = () => {
-      if (player == 1) {
-        img.src = redImg;
-        player++;
-      } else {
-        img.src = yellowImg;
-        player--;
-      }
-      img.classList.remove("opacity");
-      clicked[i] = player;
-      checkWin();
-      playerTag.textContent = player == 1 ? "Red" : "Yellow";
-      img.removeEventListener("click", img.ref);
+      game(img, i);
     })
   );
 });
 
-const removeListener = () => {
+const game = (img, i) => {
+  if (player == 1) {
+    img.src = redImg;
+    player++;
+  } else {
+    img.src = yellowImg;
+    player--;
+  }
+  img.classList.remove("opacity");
+  clicked[i] = player;
+  checkWin();
+  playerTag.textContent = player == 1 ? "Red" : "Yellow";
+  scoreRedTag.textContent = redScore;
+  scoreYellowTag.textContent = yellowScore;
+
+  img.removeEventListener("click", img.ref);
+};
+
+const reset = () => {
+  images.forEach((img, i) => {
+    img.classList.add("opacity");
+    clicked = Array.from({ length: 9 }, () => -1);
+    img.addEventListener(
+      "click",
+      (img.ref = () => {
+        game(img, i);
+      })
+    );
+  });
+};
+
+const win = () => {
   images.forEach((img) => {
     img.removeEventListener("click", img.ref);
   });
+  winBox.classList.remove("d-none");
+  if (player == 1) {
+    winName.textContent = "Yellow";
+    redScore++;
+  } else {
+    winName.textContent = "Red";
+    yellowScore++;
+  }
+  setTimeout(() => {
+    winBox.classList.add("d-none");
+    reset();
+  }, 2000);
 };
 
 const checkWin = () => {
@@ -40,18 +79,17 @@ const checkWin = () => {
       clicked[i + 3] == clicked[i + 6] &&
       clicked[i] != -1
     ) {
-      removeListener();
-      console.log("win");
+      win();
     }
   }
+
   for (let i = 0; i < 7; i += 3) {
     if (
       clicked[i] == clicked[i + 1] &&
       clicked[i + 1] == clicked[i + 2] &&
       clicked[i] != -1
     ) {
-      removeListener();
-      console.log("win");
+      win();
     }
   }
 
@@ -60,8 +98,7 @@ const checkWin = () => {
     clicked[4] == clicked[8] &&
     clicked[8] != -1
   ) {
-    removeListener();
-    console.log("win");
+    win();
   }
 
   if (
@@ -69,23 +106,10 @@ const checkWin = () => {
     clicked[4] == clicked[6] &&
     clicked[6] != -1
   ) {
-    removeListener();
-    console.log("win");
+    win();
   }
 };
 
-// if (clicked[0] == clicked[1] && clicked[1] == clicked[2]) {
-//   console.log("win");
-// }
-// if (clicked[3] == clicked[4] && clicked[4] == clicked[5]) {
-//   console.log("win");
-// }
-// if (clicked[6] == clicked[7] && clicked[7] == clicked[8]) {
-//   console.log("win");
-// }
-// if (clicked[0] == clicked[4] && clicked[4] == clicked[8]) {
-//   console.log("win");
-// }
-// if (clicked[2] == clicked[4] && clicked[4] == clicked[6]) {
-//   console.log("win");
-// }
+resetBtn.addEventListener("click", () => {
+  location.reload();
+});

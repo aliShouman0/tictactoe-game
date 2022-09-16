@@ -7,11 +7,16 @@
 
 body {
   background-color: #fa7070;
+  overflow: hidden;
 }
 
 img {
   width: 100%;
   height: 100%;
+}
+
+.d-none {
+  display: none;
 }
 
 .container {
@@ -21,6 +26,7 @@ img {
   height: auto;
   width: 40vw;
   border-radius: 40px;
+  position: relative;
 }
 
 .board {
@@ -55,8 +61,37 @@ img {
   opacity: 0;
 }
 
+/* instruction + score */
 .instruction {
   text-align: center;
   font-size: 2rem;
   font-weight: bolder;
+}
+
+/* winer */
+.win {
+  background-color: #fa7070;
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  right: 1rem;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 50px;
+  font-size: 2vw;
+  font-weight: bolder;
+}
+
+.btn {
+  background-color: #ffe9a0;
+  padding: 0.5rem 1rem;
+  margin: 0.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #fa7070;
 }
